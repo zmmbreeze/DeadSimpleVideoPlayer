@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <script type="text/javascript" src="src/VideoPlayer.js"></script>
   <link rel="stylesheet" href="src/VideoPlayer.css" />
 </head>
 <body>
 <div class="video">
-    <video>
-        <source src="http://bs.baidu.com/adtest/29cf39d796cbcfd7d6807ef6bbefeb41.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <video controls>
+        <source src="assert/Chrome_Imf.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
     </video>
     <img id="canvas" src="assert/star.png" alt="" />
+    <a href="javascript:void(0);">play</a>
 </div>
+<script type="text/javascript">
+video = createVideo('canvas');
+</script>
 </body>
 </html>
