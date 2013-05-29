@@ -1,14 +1,17 @@
 .video {
     position: relative;
     float: left;
-    width: 200px;
-    height: 191px;
+    margin-right: 10px;
+    width: 85px;
+    height: 85px;
+    overflow: hidden;
 }
 .video img {
     position: relative;
     z-index: 1;
-    width: 200px;
-    height: 191px;
+    display: block;
+    width: 85px;
+    height: 85px;
     background: red;
 }
 .video video {
@@ -20,14 +23,48 @@
     height: 100%;
 }
 .video a {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 3;
-    margin-left: -25px;
-    margin-top: -25px;
-    width: 50px;
-    height: 50px;
-    text-indent: -9999px;
+    display: block;
     background: #CCC;
+}
+.video span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    padding-right: 10px;
+    width: 75px;
+    height: 25px;
+    line-height: 25px;
+    text-align: right;
+    color: #FFF;
+    opacity: 0.8;
+    background: #000;
+}
+
+/* other */
+body {
+    font-size: 14px;
+}
+.ad h1 {
+    margin: 0 0 7px 0;
+    font-size: 120%;
+    line-height: 20px;
+}
+.ad h1 a {
+    color: #00C;
+    text-decoration: none;
+}
+.ad-content {
+    overflow: hidden;
+    line-height: 20px;
+}
+.ad-desc {
+    overflow: hidden;
+}
+.ad-desc span {
+    color: #666;
+}
+.ad-desc a {
+    text-decoration: none;
+    color: #1f992f;
 }

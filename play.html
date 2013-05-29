@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width,minimum-scale=1.0"/>
+  <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+    var html = '' +
+        '<video controls width="600" height="320">' +
+            '<source src="{video}" type=\'{type}\' />' +
+            '<div>对不起你的浏览器不支持播放此视频</div>' +
+        '</video>';
+    var m = location.search.match(/[a-zA-Z0-9]+=[^&]+/g);
+    var split;
+    for (var i = 0,l = m.length; i < l; i++) {
+        split = m[i].split('=');
+        html = html.replace('{' + split[0] + '}', decodeURIComponent(split[1]));
+    }
+    document.write(html);
+    </script>
+</body>
+</html>

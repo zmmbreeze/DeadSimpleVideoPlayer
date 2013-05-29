@@ -2,20 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
-  <script type="text/javascript" src="src/VideoPlayer.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0"/>
+  <title>Dead simple video</title>
   <link rel="stylesheet" href="src/VideoPlayer.css" />
 </head>
 <body>
-<div class="video">
-    <video controls>
-        <source src="assert/Chrome_Imf.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-    </video>
-    <img id="canvas" src="assert/star.png" alt="" />
-    <a href="javascript:void(0);">play</a>
+<div class="ad">
+    <h1><a href="#">经常低头玩手机容易导致脸部皱纹？</a></h1>
+    <div class="ad-content">
+        <div class="video">
+            <img id="canvas" src="assert/star.png" alt="" />
+        </div>
+        <div class="ad-desc">
+            常见一些人无论是乘车、走路、吃饭，都拿着手机低头阅读、打游戏<br/>
+            <a href="#">www.benz.com</a> - <span>品牌推广</span>
+        </div>
+        <script type="text/javascript">
+        (function() {
+            var data = {
+                htmlUrl: './play.html',
+                videoUrl: 'http://bs.baidu.com/adtest/29cf39d796cbcfd7d6807ef6bbefeb41.mp4',
+                type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+            };
+
+            var img = document.getElementById('canvas');
+            var parent = img.parentNode;
+            var video = document.createElement('video');
+            if (video.canPlayType(data.type)) {
+                // create video
+                var source = document.createElement('source');
+                source.src = data.videoUrl;
+                source.type = data.type;
+                video.appendChild(source);
+
+                // create time span
+                var span = document.createElement('span');
+                span.innerHTML = '00:30';
+
+                // create link image
+                var a = document.createElement('a');
+                a.href = data.htmlUrl + '?video=' + encodeURIComponent(data.videoUrl) + '&type=' + encodeURIComponent(data.type);
+                a.target = '_blank';
+                parent.removeChild(img);
+                a.appendChild(img);
+
+                parent.appendChild(video);
+                parent.appendChild(a);
+                parent.appendChild(span);
+            }
+        })();
+        </script>
+    </div>
 </div>
-<script type="text/javascript">
-video = createVideo('canvas');
-</script>
 </body>
 </html>
