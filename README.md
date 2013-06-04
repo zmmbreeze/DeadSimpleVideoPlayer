@@ -33,6 +33,38 @@ iPhone不支持自动播放，android上UC浏览器与高版本的默认浏览�
 
 Android 2.3+的默认浏览器基本都支持mp4格式的video标签，但对全屏支持不全，且都无法通过js激活全屏。旧版本还存在一些[bug](http://www.broken-links.com/2010/07/08/making-html5-video-work-on-android-phones/)。iPhone 3.2+的默认浏览器也支持mp4格式的video标签（默认打开即调用默认播放器全屏播放，且无法通过js来播放）。
 
+## H.264简介
+
+H.264/MPEG-4第10部分，或称AVC（Advanced Video Coding，高级视频编码），是一种视频压缩标准，一种被广泛使用的高精度视频的录制、压缩和发布格式。第一版标准的最终草案于2003年5月完成。
+
+H.264/MPEG-4 AVC是一种面向块的基于运动补偿的编解码器标准。由ITU-T视频编码专家组与ISO/IEC联合工作组——即动态图像专家组（MPEG）——联合组成的联合视频组（JVT，Joint Video Team）开发。因ITU-T H.264标准和 ISO/IEC MPEG-4 AVC标准（正式名称是ISO/IEC 14496-10 — MPEG-4第十部分，高级视频编码）有相同的技术内容，故被共同管理。
+
+H.264标准可以被看作一个“标准家族”，成员有下面描述的各种配置（profile）。一个特定的解码器至少支持一种，但不必支持所有的。解码器标准描述了它可以解码哪些配置。在HTML的`source`标签的`type`属性中可以制定所使用的H.264的配置(profile)：
+
+```html
+<!-- H.264 Constrained baseline profile video (main and extended video compatible) level 3 and Low-Complexity AAC audio in MP4 container -->
+<source src='video.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+<!-- H.264 Extended profile video (baseline-compatible) level 3 and Low-Complexity AAC audio in MP4 container -->
+<source src='video.mp4' type='video/mp4; codecs="avc1.58A01E, mp4a.40.2"'>
+<!-- H.264 Main profile video level 3 and Low-Complexity AAC audio in MP4 container -->
+<source src='video.mp4' type='video/mp4; codecs="avc1.4D401E, mp4a.40.2"'>
+<!-- H.264 'High' profile video (incompatible with main, baseline, or extended profiles) level 3 and Low-Complexity AAC audio in MP4 container -->
+<source src='video.mp4' type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'>
+```
+
+codec是“[编解码器](http://zh.wikipedia.org/wiki/%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8)”的英文翻译。
+
+### 视频转换
+
+这里推荐使用[HandBrake](http://handbrake.fr/)来转换视频，因为它可以选择使用那种profile。步骤如下：
+
+1. 菜单 File > Source 选择你要转换的视频
+2. 选择 Format 为MP4，选中“Web Optimized”勾选框
+3. 进入video标签，选择H.264 Profile为“Baseline”，level为“3.0”
+4. 进入audio标签，选择Encoder为AAC(faac)
+
+这样得到的转换后视频符合`video/mp4; codecs="avc1.42E01E, mp4a.40.2"`格式。
+
 ## 具体方案
 
 按照目前的支持情况，需要针对iPhone和android做不同的处理。大概流程为：
@@ -58,5 +90,7 @@ Android 2.3+的默认浏览器基本都支持mp4格式的video标签，但对全
 * [Unsolved HTML5 video issues on iOS](http://blog.millermedeiros.com/unsolved-html5-video-issues-on-ios/)
 * [Dive into HTML5](http://diveintohtml5.info/video.html)
 * 几个简单的播放器：[MediaElement.js](http://mediaelementjs.com/)、[videojs](http://www.videojs.com/)
-
+* [视频编解码 wiki](http://zh.wikipedia.org/wiki/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8)
+* [H.264 wiki](https://zh.wikipedia.org/wiki/H.264/MPEG-4_AVC)
+* [HTML5 source标签标准](http://dev.w3.org/html5/spec-preview/the-source-element.html)
 
